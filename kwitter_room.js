@@ -13,21 +13,18 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-username=localStorage.getItem("person_name");
- document.getElementById("user_name1").innerHTML="Welcome To"+username;
-function add_room() {
-room1=document.getElementById("room").value;
-username=localStorage.getItem("person_name");
- document.getElementById("user_name1").innerHTML="Welcome To"+username;
-function add_room() {
-room1=document.getElementById("room").value;
-username=localStorage.getItem("person_name");
+ username=localStorage.getItem("person_name");
  document.getElementById("user_name1").innerHTML="Welcome To"+username;
 
+function add_room() {
+room_name=document.getElementById("room").value;
+firebase.database().ref("/").child(room_name).update
+({ child1name: "adding one room name" });
+localStorage.setItem("room_name", room_name);
+ window.location = "kwitter_page.html";
+}
 
- 
-function getData() {firebase.database().ref("/").on('value', function(snapshot)
- {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
+function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
        Room_names = childKey;
       //Start code
 console.log(Room_names);
